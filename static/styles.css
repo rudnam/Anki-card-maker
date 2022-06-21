@@ -1,0 +1,33 @@
+.form-settings {
+    margin: auto;
+    margin-bottom: 0.2cm;
+    width: 30%;
+}
+
+.btn {
+    margin-bottom: 0.2cm;
+}
+
+.modal-content {
+    height:100%;
+}
+
+#textareaLabel {
+    margin-bottom: 0.2cm;
+}
+
+#nav-settings {
+    color: white;
+    text-decoration: none;
+}
+
+#settings-limit{
+    width:15%;
+    margin:auto;
+}
+
+#exampleFormControlTextarea1 {
+    margin: auto;
+    margin-bottom: 0.2cm;
+    width: 40%;
+}

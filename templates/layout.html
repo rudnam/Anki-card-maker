@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+
+        <!-- http://getbootstrap.com/docs/5.1/ -->
+        <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" rel="stylesheet">
+        <script crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+        <link href="/static/styles.css" rel="stylesheet">
+
+        <!-- modal code from here  -->
+        <div class="modal fade" id="reg-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal-title">Edit row</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/update" method="post" id="form1" autocomplete="off">
+                            <div class="form-group">
+                                <label for="modal-expression" class="col-form-label">Expression</label>
+                                <input type="text" class="form-control" id="modal-expression" name="expression">
+                            </div>
+                            <div class="form-group">
+                                <label for="modal-meaning" class="col-form-label">Meaning</label>
+                                <textarea class="form-control" id="modal-meaning" name="meaning"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="modal-reading" class="col-form-label">Reading</label>
+                                <input type="text" class="form-control" id="modal-reading" name="reading">
+                            </div>
+                            <div class="form-group">
+                                <label for="modal-audio" class="col-form-label">Audio</label>
+                                <input type="text" class="form-control" id="modal-audio" name="audio">
+                            </div>
+                            <div class="form-group">
+                                <label for="modal-image_URI" class="col-form-label">image_URI</label>
+                                <input type="text" class="form-control" id="modal-image_URI" name="image_URI">
+                            </div>
+                            <div class="form-group">
+                                <label for="modal-iKnowID" class="col-form-label">iKnowID</label>
+                                <input type="text" class="form-control" id="modal-iKnowID" name="iKnowID">
+                            </div>
+                            <div class="form-group">
+                                <label for="modal-iKnowType" class="col-form-label">iKnowType</label>
+                                <input type="text" class="form-control" id="modal-iKnowType" name="iKnowType">
+                            </div>
+                            <div class="form-group">
+                                <label for="modal-tag" class="col-form-label">Tag</label>
+                                <input type="text" class="form-control" id="modal-tag" name="Tag">
+                            </div>
+                            <input type="hidden" id="modal-row" name="row">
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" form="form1" type="submit">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $('#reg-modal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var expression = button.data('expression')
+            var meaning = button.data('meaning')
+            var reading = button.data('reading')
+            var audio = button.data('audio')
+            var image_URI = button.data('imageuri')
+            var iKnowID = button.data('iknowid')
+            var iKnowType = button.data('iknowtype')
+            var tag = button.data('tag')
+            var row = button.data('row')
+
+            var modal = $(this)
+            modal.find('#modal-expression').val(expression)
+            modal.find('#modal-meaning').val(meaning)
+            modal.find('#modal-reading').val(reading)
+            modal.find('#modal-audio').val(audio)
+            modal.find('#modal-image_URI').val(image_URI)
+            modal.find('#modal-iKnowID').val(iKnowID)
+            modal.find('#modal-iKnowType').val(iKnowType)
+            modal.find('#modal-tag').val(tag)
+            modal.find('#modal-row').val(row)
+
+            })
+        </script>
+        <title>Anki card maker{% block title %}{% endblock %}</title>
+
+    </head>
+
+    <body>
+        <nav class="bg-dark border navbar navbar-expand-md navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">&nbsp;&nbsp;&nbsp;Anki card maker</a>
+                <div class="collapse navbar-collapse" id="navbar">
+                    <ul class="navbar-nav me-auto mt-2">
+                        <li class="nav-item"></li>
+                    </ul>
+                    <a class="navbar-nav ms-auto mt-2" id="nav-settings" href="/settings">Settings&nbsp;&nbsp;&nbsp;</a>
+                </div>
+            </div>
+        </nav>
+
+        <main class="container py-5 text-center">
+            {% block main %}{% endblock %}
+        </main>
+
+        <footer class="mb-5 small text-center text-muted">
+            Data provided by <a href="https://jisho.org/">Jisho</a>
+        </footer>
+
+    </body>
+
+</html>

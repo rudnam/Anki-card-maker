@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    - Home
+{% endblock %}
+
+{% block main %}
+    <form action="/generate" method="post" autocomplete="off">
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1" id="textareaLabel">Type in japanese sentences to the textbox below. Only one sentence per line.</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" name="sentences" placeholder="お前はもう死んでいる。&#10何！？" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit">Generate cards</button>
+        </div>
+    </form>
+    <form action="/clear" method="post" autocomplete="off">
+        <button class="btn btn-primary" type="submit">Clear</button>
+    </form>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="text-start">Expression</th>
+                <th class="text-start">Meaning</th>
+                <th class="text-end">Reading</th>
+                <th class="text-end">Audio</th>
+                <th class="text-end">image_URI</th>
+                <th class="text-end">iKnowID</th>
+                <th class="text-end">iKnowType</th>
+                <th class="text-end">Tags</th>
+                <th class="text-end">Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for card in cards %}
+            <tr>
+                <td class="text-start">{{ card.expression }}</td>
+                <td class="text-start">{{ card.meaning }}</td>
+                <td class="text-end">{{ card.reading }}</td>
+                <td class="text-end">{{ card.audio }}</td>
+                <td class="text-end">{{ card.image_URI }}</td>
+                <td class="text-end">{{ card.iKnowID }}</td>
+                <td class="text-end">{{ card.iKnowType }}</td>
+                <td class="text-end">{{ card.tag }}</td>
+                <td><button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#reg-modal"
+                    data-expression="{{ card.expression }}"
+                    data-meaning="{{ card.meaning }}"
+                    data-reading="{{ card.reading }}"
+                    data-audio="{{ card.audio }}"
+                    data-imageuri="{{ card.image_URI }}"
+                    data-iknowid="{{ card.iKnowID }}"
+                    data-iknowtype="{{ card.iKnowType }}"
+                    data-tag="{{ card.tag }}"
+                    data-row="{{ card.id }}"
+                    >Edit</button>&nbsp;<a href="/delete/{{ card.id }}" class="btn btn-sm btn-outline-danger">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <form action="/download">
+        <button class="btn btn-primary" type="submit">Download csv</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    - Settings
+{% endblock %}
+
+{% block main %}
+    <h4>Change default settings</h4><br>
+    <form action="/settings" method="post" class="form-settings" autocomplete="off">
+        <div class="form-group">
+            <label for="settings-limit" class="col-form-label">Definitions limit</label>
+            <input type="number" class="form-control" id="settings-limit" name="limit" value="{{ limit }}"> 
+        </div>
+        <div class="form-group">
+            <label for="settings-audio" class="col-form-label">Default Audio</label>
+            <input type="text" class="form-control" id="settings-audio" name="audio" value="{{ audio }}">
+        </div>
+        <div class="form-group">
+            <label for="settings-image_URI" class="col-form-label">Default image_URI</label>
+            <input type="text" class="form-control" id="settings-image_URI" name="image_URI" value="{{ image_URI }}">
+        </div>
+        <div class="form-group">
+            <label for="settings-iKnowID" class="col-form-label">Default iKnowID</label>
+            <input type="text" class="form-control" id="settings-iKnowID" name="iKnowID" value="{{ iKnowID }}">
+        </div>
+        <div class="form-group">
+            <label for="settings-iKnowType" class="col-form-label">Default iKnowType</label>
+            <input type="text" class="form-control" id="settings-iKnowType" name="iKnowType" value="{{ iKnowType }}">
+        </div>
+        <div class="form-group">
+            <label for="settings-tag" class="col-form-label">Default Tag</label>
+            <input type="text" class="form-control" id="settings-tag" name="Tag" value="{{ Tag }}">
+        </div>
+        <div class="form-group">
+            <br>
+            <button class="btn btn-primary" type="submit">Save changes</button>
+            <br>
+            <a href="/default" class="btn btn-primary">Reset settings</a>
+        </div>
+    </form>
+    
+{% endblock %}
