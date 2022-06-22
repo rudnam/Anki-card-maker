@@ -11,8 +11,10 @@ DEF_IKNOWID = ''
 DEF_IKNOWTYPE = ''
 DEF_TAG = ''
 app = Flask(__name__)
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cards.db'
 db = SQLAlchemy(app)
+
 
 class Cards(db.Model):
     id = db.Column(db.Integer, primary_key=True)
